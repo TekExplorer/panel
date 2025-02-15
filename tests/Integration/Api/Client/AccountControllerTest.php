@@ -23,10 +23,18 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
             'object' => 'user',
             'attributes' => [
                 'id' => $user->id,
-                'admin' => false,
+                'uuid' => $user->uuid,
                 'username' => $user->username,
                 'email' => $user->email,
-                'language' => $user->language,
+                'first_name' => $user->name_first,
+                'last_name' => $user->name_last,
+                'language' => 'en',
+                'image' => $user->avatar_url,
+                'admin' => false,
+                'root_admin' => false,
+                '2fa_enabled' => false,
+                'created_at' => $this->formatTimestamp($user->created_at),
+                'updated_at' => $this->formatTimestamp($user->updated_at),
             ],
         ]);
     }

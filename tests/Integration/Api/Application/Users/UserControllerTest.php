@@ -23,8 +23,8 @@ class UserControllerTest extends ApplicationApiIntegrationTestCase
         $response->assertJsonStructure([
             'object',
             'data' => [
-                ['object', 'attributes' => ['id', 'external_id', 'uuid', 'username', 'email', 'language', 'admin_role_id', 'root_admin', '2fa', 'avatar_url', 'role_name', 'created_at', 'updated_at']],
-                ['object', 'attributes' => ['id', 'external_id', 'uuid', 'username', 'email', 'language', 'admin_role_id', 'root_admin', '2fa', 'avatar_url', 'role_name', 'created_at', 'updated_at']],
+                ['object', 'attributes' => ['id', 'external_id', 'uuid', 'username', 'email', 'language', 'admin_role_id', 'root_admin', '2fa_enabled', '2fa', 'avatar_url', 'role_name', 'created_at', 'updated_at']],
+                ['object', 'attributes' => ['id', 'external_id', 'uuid', 'username', 'email', 'language', 'admin_role_id', 'root_admin', '2fa_enabled', '2fa', 'avatar_url', 'role_name', 'created_at', 'updated_at']],
             ],
             'meta' => ['pagination' => ['total', 'count', 'per_page', 'current_page', 'total_pages']],
         ]);
@@ -54,6 +54,7 @@ class UserControllerTest extends ApplicationApiIntegrationTestCase
                     'language' => $this->getApiUser()->language,
                     'admin_role_id' => $this->getApiUser()->admin_role_id,
                     'root_admin' => $this->getApiUser()->root_admin,
+                    '2fa_enabled' => $this->getApiUser()->use_totp,
                     '2fa' => $this->getApiUser()->use_totp,
                     'avatar_url' => $this->getApiUser()->avatar_url,
                     'role_name' => $this->getApiUser()->admin_role_name,

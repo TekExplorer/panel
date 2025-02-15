@@ -36,7 +36,8 @@ class UserTransformer extends Transformer
             'email' => $model->email,
             'language' => $model->language,
             'root_admin' => (bool) $model->root_admin,
-            '2fa' => (bool) $model->use_totp,
+            '2fa' => (bool) $model->use_totp, // deprecated, use "2fa_enabled"
+            '2fa_enabled' => (bool) $model->totp_enabled, // consistent with Client-side
             'avatar_url' => $model->avatar_url,
             'admin_role_id' => $model->admin_role_id,
             'role_name' => $model->admin_role_name,

@@ -19,15 +19,21 @@ class UserTransformer extends Transformer
      * Transforms a User model into a representation that can be shown to regular
      * users of the API.
      */
-    public function transform(User $model): array
+    public function transform(User $user): array
     {
         return [
-            'uuid' => $model->uuid,
-            'username' => $model->username,
-            'email' => $model->email,
-            'image' => $model->avatar_url,
-            '2fa_enabled' => $model->use_totp,
-            'created_at' => self::formatTimestamp($model->created_at),
+            'id' => $user->id, // deprecated, should not user-facing
+            'uuid' => $user->uuid,
+            'username' => $user->username,
+            'email' => $user->email,
+            'first_name' => $user->name_first,
+            'last_name' => $user->name_last,
+            'language' => $user->language,
+            'image' => $user->avatar_url,
+            'admin' => (bool) $user->root_admin,
+            '2fa_enabled' => (bool) $user->use_totp,
+            'created_at' => self::formatTimestamp($user->created_at),
+            'updated_at' => self::formatTimestamp($user->updated_at),
         ];
     }
 }
